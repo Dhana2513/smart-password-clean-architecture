@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:smart_password_clean_architechture/features/dashboard/presentation/dashboard_screen.dart';
+import 'package:smart_password_clean_architechture/features/presentation/bloc/splash_bloc.dart';
+import 'package:smart_password_clean_architechture/features/presentation/dashboard_screen.dart';
 import 'package:splashscreen/splashscreen.dart' as splash;
 
 class SplashScreen extends StatefulWidget {
@@ -11,7 +12,7 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
  
-  @override
+   @override
   Widget build(BuildContext context) {
     return splash.SplashScreen(
       navigateAfterFuture: _checkIsUsedLoggedIn(),
@@ -27,7 +28,8 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future<bool> _checkIsUsedLoggedIn() async {
-    await Future.delayed(Duration(seconds: 2));
+    splashBloc.checkPatter('asdf');
+  
     Navigator.pushReplacementNamed(context, DashBoardScreen.routeName);
     return true;
   }
