@@ -1,7 +1,8 @@
 import 'package:encrypt/encrypt.dart';
 
 class EncryptionDecryptionUtil {
-  static getInstance({String masterKey}) => EncryptionDecryptionUtil._(masterKey: masterKey);
+  static EncryptionDecryptionUtil getInstance({String masterKey}) =>
+      EncryptionDecryptionUtil._(masterKey: masterKey);
 
   final String masterKey;
 
@@ -9,30 +10,32 @@ class EncryptionDecryptionUtil {
     init();
   }
   Encrypter encrypter;
+  var iv;
 
   init() {
-    final key = Key.fromUtf8(createMasterKey(masterKey));
+    var key;
+    key = Key.fromUtf8(createMasterKey(key: masterKey ?? ''));
+    iv = IV.fromUtf8(createMasterKey(key: masterKey ?? ''));
     encrypter = Encrypter(AES(key));
   }
 
   String encrypt(String text) {
-    final iv = IV.fromUtf8(createMasterKey(masterKey));
     Encrypted encrypted = encrypter.encrypt(text, iv: iv);
     return encrypted.base64;
   }
 
   String decrypt(String text) {
-    final iv = IV.fromUtf8(createMasterKey(masterKey));
     var encrypted = Encrypted.from64(text);
     final decrypted = encrypter.decrypt(encrypted, iv: iv);
     return decrypted;
   }
 
-  String createMasterKey(String text) {
-    while (text.length < 16) {
-      text += 'V';
+  String createMasterKey({String key = ''}) {
+    //create 128/192/256 bit key as cyper key.
+    //Have created the 16 byte = 128 bit cyper key.
+    while (key.length < 16) {
+      key += 'V';
     }
-    print('length: ${text.length}');
-    return text;
+    return key;
   }
 }
