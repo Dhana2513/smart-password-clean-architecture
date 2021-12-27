@@ -18,12 +18,17 @@ dependencies:
   rxdart:
   bloc: 
   equatable:
-  shared_preferences:
   splashscreen: 
+  pattern_lock: 
+  encrypt:
+  hive:
+
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+
 
 flutter:
 
