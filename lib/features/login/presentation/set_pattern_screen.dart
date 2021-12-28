@@ -1,25 +1,23 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:pattern_lock/pattern_lock.dart';
+import 'package:smart_password_clean_architechture/features/login/presentation/bloc/login_bloc.dart';
+import 'package:smart_password_clean_architechture/features/login/presentation/check_pattern_screen.dart';
 
-class SetPattern extends StatefulWidget {
+class SetPatternScreen extends StatefulWidget {
+  static const routeName = 'setPattern';
   @override
-  _SetPatternState createState() => _SetPatternState();
+  _SetPatternScreenState createState() => _SetPatternScreenState();
 }
 
-class _SetPatternState extends State<SetPattern> {
+class _SetPatternScreenState extends State<SetPatternScreen> {
   bool isConfirm = false;
   List<int> pattern;
-
-  final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: scaffoldKey,
-      appBar: AppBar(
-        title: Text("Check Pattern"),
-      ),
+      appBar: AppBar(title: Text("Check Pattern")),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
@@ -45,7 +43,12 @@ class _SetPatternState extends State<SetPattern> {
                 }
                 if (isConfirm) {
                   if (listEquals<int>(input, pattern)) {
-                    Navigator.of(context).pop(pattern);
+                    loginBloc.addMasterPassword(
+                      ModalRoute.of(context).settings.arguments as String,
+                    );
+                    loginBloc.addPattern(pattern.toString());
+                    Navigator.of(context)
+                        .pushReplacementNamed(CheckPatternScreen.routeName);
                   } else {
                     // context.replaceSnackbar(
                     //   content: Text(

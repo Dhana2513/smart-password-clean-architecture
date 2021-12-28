@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:get_it/get_it.dart';
 import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:smart_password_clean_architechture/core/utils/database_util.dart';
 import 'package:smart_password_clean_architechture/features/dashboard/data/client/smart_password_client.dart';
 import 'package:smart_password_clean_architechture/features/dashboard/data/datasource/local_datasource.dart';
@@ -25,16 +26,16 @@ import 'package:smart_password_clean_architechture/features/login/domain/usecase
 import 'package:smart_password_clean_architechture/features/login/domain/usecases/set_master_password.dart';
 import 'package:smart_password_clean_architechture/features/login/domain/usecases/update_pattern.dart';
 import 'package:smart_password_clean_architechture/features/login/presentation/bloc/login_bloc.dart';
-import 'package:smart_password_clean_architechture/features/login/presentation/bloc/splash_bloc.dart';
 
 final sl = GetIt.instance;
 
 Future<void> init() async {
   // Hive
-  var path = Directory.current.path;
-  Hive
-    ..init(path)
-    ..registerAdapter(PasswordAdapter());
+
+  await Hive.initFlutter();
+  Hive.registerAdapter(PasswordAdapter());
+  await Hive.openBox('keyValueBox');
+  await Hive.openBox<Password>('passwordsBox');
 
   sl.registerLazySingleton(() => DatabaseUtil.instance);
 
@@ -72,14 +73,17 @@ _loginInit() {
   sl.registerLazySingleton(() => AddPattern(sl()));
   sl.registerLazySingleton(() => CheckPattern(sl()));
   sl.registerLazySingleton(() => UpdatePattern(sl()));
-  
+
   ///bloc
   sl.registerFactory(
-    () => SplashBloc(),
-  );
-  
-  sl.registerFactory(
-    () => LoginBloc(),
+    () => LoginBloc(
+      isMasterPasswordSet: sl(),
+      addPattern: sl(),
+      checkPattern: sl(),
+      isPatternSet: sl(),
+      setMasterPassword: sl(),
+      updatePattern: sl(),
+    ),
   );
 }
 

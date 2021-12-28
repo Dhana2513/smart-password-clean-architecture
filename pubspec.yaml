@@ -22,6 +22,7 @@ dependencies:
   pattern_lock: 
   encrypt:
   hive:
+  hive_flutter:
 
 
 dev_dependencies:

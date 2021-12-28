@@ -1,15 +1,16 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:pattern_lock/pattern_lock.dart';
+import 'package:smart_password_clean_architechture/features/dashboard/presentation/dashboard_screen.dart';
+import 'package:smart_password_clean_architechture/features/login/presentation/bloc/login_bloc.dart';
 
-class CheckPattern extends StatelessWidget {
-  final scaffoldKey = GlobalKey<ScaffoldState>();
+class CheckPatternScreen extends StatelessWidget {
+  static const routeName='checkPattern';
 
   @override
   Widget build(BuildContext context) {
-    final List<int> pattern = ModalRoute.of(context).settings.arguments as List<int>;
+    
     return Scaffold(
-      key: scaffoldKey,
       appBar: AppBar(
         title: Text("Check Pattern"),
       ),
@@ -32,8 +33,8 @@ class CheckPattern extends StatelessWidget {
               selectThreshold: 25,
               fillPoints: true,
               onInputComplete: (List<int> input) {
-                if (listEquals<int>(input, pattern)) {
-                  Navigator.of(context).pop(true);
+                if (loginBloc.checkPattern(input.toString())) {
+                  Navigator.of(context).pushReplacementNamed(DashBoardScreen.routeName);
                 } else {
                   //  context.replaceSnackbar(
                   //   content: Text(

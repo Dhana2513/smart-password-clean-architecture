@@ -4,9 +4,9 @@ import 'package:smart_password_clean_architechture/features/dashboard/domain/ent
 
 abstract class RepositoryProtocol {
 
-  Future<Either<Failure, List<Password>>> getAllPasswords();
-  Future<Either<Failure, bool>> addPassword(Password password);
-  Future<Either<Failure, bool>> updatePassword(Password password);
-  Future<Either<Failure, bool>> deletePassword(Password password);
+  Either<Failure, List<Password>> getAllPasswords();
+  Either<Failure, bool> addPassword(Password password);
+  Either<Failure, bool> updatePassword(Password password);
+  Either<Failure, bool> deletePassword(Password password);
  
 }

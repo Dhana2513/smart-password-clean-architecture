@@ -8,32 +8,38 @@ class LoginRepository extends LoginRepositoryProtocol {
 
   LoginRepository({this.dataSource});
 
-
   @override
-  Future<Either<Failure, bool>> addPattern(String pattern) {}
-
-  @override
-  Future<Either<Failure, bool>> checkPattern(String pattern) {}
-
-
-  @override
-  Future<Either<Failure, bool>> isPatternSet() {}
-
-  @override
-  Future<Either<Failure, bool>> updatePattern(String pattern) {}
-
-  @override
-  Future<Either<Failure, bool>> setMasterPassword(String masterPassword) {
-   
+  void addPattern(String pattern) {
+    dataSource.addPattern(pattern);
   }
 
   @override
-  Future<Either<Failure, String>> getMasterPassword() {
-   
+  Either<Failure, bool> checkPattern(String pattern) {
+    return dataSource.checkPattern(pattern);
   }
 
   @override
-  Future<Either<Failure, bool>> isMasterPasswordSet() {
-   
+  Either<Failure, bool> isPatternSet() {
+    return dataSource.isPatternSet();
+  }
+
+  @override
+  void updatePattern(String pattern) {
+    dataSource.updatePattern(pattern);
+  }
+
+  @override
+  void addMasterPassword(String masterPassword) {
+    dataSource.addMasterPassword(masterPassword);
+  }
+
+  @override
+  Either<Failure, bool> checkMasterPassword(String masterPassword) {
+    return dataSource.checkMasterPassword(masterPassword);
+  }
+
+  @override
+  Either<Failure, bool> isMasterPasswordSet() {
+    return dataSource.isMasterPasswordSet();
   }
 }

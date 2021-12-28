@@ -1,17 +1,39 @@
 import 'package:smart_password_clean_architechture/core/utils/database_util.dart';
 
 class LoginClient {
-  DatabaseUtil databaseUtil;
-  LoginClient({
-    this.databaseUtil,
-  });
-  
-  Future<bool> isPatternSet() {}
-  Future<bool> addPattern(String pattern) {}
-  Future<bool> checkPattern(String pattern) {}
-  Future<bool> updatePattern(String pattern) {}
+  final DatabaseUtil _databaseUtil;
 
-  Future<bool> isMasterPasswordSet() {}
-  Future<bool> addMasterPassword(String masterPassword) {}
-  Future<String> getMasterPassword() {}
+  LoginClient({
+    DatabaseUtil databaseUtil,
+  }) : _databaseUtil = databaseUtil;
+
+  bool isPatternSet() {
+    return _databaseUtil.isPatternSet();
+  }
+
+  void addPattern(String pattern) {
+    _databaseUtil.putPattern(pattern);
+  }
+
+  bool checkPattern(String pattern) {
+    var dbPattern = _databaseUtil.getPattern();
+    return dbPattern == pattern;
+  }
+
+  void updatePattern(String pattern) {
+    _databaseUtil.putPattern(pattern);
+  }
+
+  bool isMasterPasswordSet() {
+    return _databaseUtil.isMasterPasswordSet();
+  }
+
+  void addMasterPassword(String masterPassword) {
+    _databaseUtil.putMasterPassword(masterPassword);
+  }
+
+  bool checkMasterPassword(String masterPassword) {
+    var dbMasterPassword = _databaseUtil.getMasterPassword();
+    return dbMasterPassword == masterPassword;
+  }
 }

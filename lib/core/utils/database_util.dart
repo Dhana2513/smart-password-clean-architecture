@@ -20,22 +20,32 @@ class DatabaseUtil {
 
   void initEncryptionDecryptionUtil() {
     String masterPassword = _keyValueBox.get('masterPassword') ?? '';
-    String masterKey =
-        EncryptionDecryptionUtil.getInstance().decrypt(masterPassword);
+    if (masterPassword.isNotEmpty) {
+      String masterKey =
+          EncryptionDecryptionUtil.getInstance().decrypt(masterPassword);
 
-    encryptionDecryptionUtil =
-        EncryptionDecryptionUtil.getInstance(masterKey: masterKey);
+      encryptionDecryptionUtil =
+          EncryptionDecryptionUtil.getInstance(masterKey: masterKey);
+    }
   }
 
-  String getpattern() {
+  String getPattern() {
     String pattern = _keyValueBox.get('pattern') ?? '';
     return pattern.isEmpty ? '' : encryptionDecryptionUtil.decrypt(pattern);
+  }
+
+  String getMasterPassword() {
+    String masterPassword = _keyValueBox.get('masterPassword') ?? '';
+    return masterPassword.isEmpty
+        ? ''
+        : EncryptionDecryptionUtil.getInstance().encrypt(masterPassword);
   }
 
   void putMasterPassword(String masterPassword) {
     String master =
         EncryptionDecryptionUtil.getInstance().encrypt(masterPassword);
     _keyValueBox.put('masterPassword', master);
+    initEncryptionDecryptionUtil();
   }
 
   void putPattern(String pattern) {
@@ -58,6 +68,7 @@ class DatabaseUtil {
 
   bool isMasterPasswordSet() {
     String password = _keyValueBox.get('masterPassword') ?? '';
+    print('isMasterPasswordSet : $password');
     return password.isNotEmpty;
   }
 

@@ -1,8 +1,5 @@
 import 'package:dartz/dartz.dart';
 import 'package:smart_password_clean_architechture/core/error/failures.dart';
-import 'package:smart_password_clean_architechture/features/dashboard/data/client/smart_password_client.dart';
-import 'package:smart_password_clean_architechture/features/dashboard/data/datasource/local_datasource_protocol.dart';
-import 'package:smart_password_clean_architechture/features/dashboard/domain/entities/password.dart';
 import 'package:smart_password_clean_architechture/features/login/data/client/login_client.dart';
 import 'package:smart_password_clean_architechture/features/login/data/datasource/login_local_datasource_protocol.dart';
 
@@ -12,23 +9,37 @@ class LoginLocalDataSource extends LoginLocalDataSourceProtocol {
   LoginLocalDataSource({this.client});
 
   @override
-  Future<Either<Failure, bool>> addPattern(String pattern) {}
+  void addPattern(String pattern) {
+    client.addPattern(pattern);
+  }
 
   @override
-  Future<Either<Failure, bool>> checkPattern(String pattern) {}
+  Either<Failure, bool> checkPattern(String pattern) {
+    return Right(client.checkPattern(pattern));
+  }
 
   @override
-  Future<Either<Failure, bool>> isPatternSet() {}
+  Either<Failure, bool> isPatternSet() {
+    return Right(client.isPatternSet());
+  }
 
   @override
-  Future<Either<Failure, bool>> updatePattern(String pattern) {}
+  void updatePattern(String pattern) {
+    client.updatePattern(pattern);
+  }
 
   @override
-  Future<Either<Failure, bool>> addMasterPassword(String masterPassword) {}
+  void addMasterPassword(String masterPassword) {
+    client.addMasterPassword(masterPassword);
+  }
 
   @override
-  Future<Either<Failure, String>> getMasterPassword() {}
+  Either<Failure, bool> checkMasterPassword(String masterPassword) {
+    return Right(client.checkMasterPassword(masterPassword));
+  }
 
   @override
-  Future<Either<Failure, bool>> isMasterPasswordSet() {}
+  Either<Failure, bool> isMasterPasswordSet() {
+      return Right(client.isMasterPasswordSet());
+  }
 }

@@ -10,22 +10,22 @@ class Repository extends RepositoryProtocol {
   Repository({this.dataSource});
 
   @override
-  Future<Either<Failure, bool>> addPassword(Password password) {
+  Either<Failure, bool> addPassword(Password password) {
     return dataSource.addPassword(password);
   }
 
   @override
-  Future<Either<Failure, bool>> deletePassword(Password password) {
+  Either<Failure, bool> deletePassword(Password password) {
     return dataSource.deletePassword(password);
   }
 
   @override
-  Future<Either<Failure, List<Password>>> getAllPasswords() {
+  Either<Failure, List<Password>> getAllPasswords() {
     return dataSource.getAllPasswords();
   }
 
   @override
-  Future<Either<Failure, bool>> updatePassword(Password password) {
+  Either<Failure, bool> updatePassword(Password password) {
     return dataSource.updatePassword(password);
   }
 

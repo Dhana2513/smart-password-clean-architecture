@@ -10,26 +10,26 @@ class LocalDataSource extends LocalDataSourceProtocol {
   LocalDataSource({this.client});
 
   @override
-  Future<Either<Failure, bool>> addPassword(Password password) async {
-    final result = await client.addPassword(password);
+  Either<Failure, bool> addPassword(Password password)  {
+    final result =  client.addPassword(password);
     return Right(result);
   }
 
   @override
-  Future<Either<Failure, bool>> deletePassword(Password password) async {
-    final result = await client.deletePassword(password);
+  Either<Failure, bool> deletePassword(Password password)  {
+    final result =  client.deletePassword(password);
     return Right(result);
   }
 
   @override
-  Future<Either<Failure, List<Password>>> getAllPasswords() async {
-    final result = await client.getAllPasswords();
+  Either<Failure, List<Password>> getAllPasswords()  {
+    final result =  client.getAllPasswords();
     return Right(result);
   }
 
   @override
-  Future<Either<Failure, bool>> updatePassword(Password password) async {
-    final result = await client.updatePassword(password);
+  Either<Failure, bool> updatePassword(Password password)  {
+    final result =  client.updatePassword(password);
     return Right(result);
   }
 

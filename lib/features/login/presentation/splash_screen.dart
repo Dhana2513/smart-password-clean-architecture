@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:smart_password_clean_architechture/features/login/presentation/bloc/splash_bloc.dart';
-import 'package:smart_password_clean_architechture/features/dashboard/presentation/dashboard_screen.dart';
-import 'package:smart_password_clean_architechture/features/login/presentation/login_screen.dart';
+import 'package:smart_password_clean_architechture/features/login/presentation/bloc/login_bloc.dart';
+import 'package:smart_password_clean_architechture/features/login/presentation/check_pattern_screen.dart';
+import 'package:smart_password_clean_architechture/features/login/presentation/master_password_screen.dart';
 import 'package:splashscreen/splashscreen.dart' as splash;
 
 class SplashScreen extends StatefulWidget {
@@ -17,7 +17,7 @@ class _SplashScreenState extends State<SplashScreen> {
     return splash.SplashScreen(
       navigateAfterFuture: _checkIsUsedLoggedIn(),
       title: Text(
-        'Welcome In SplashScreen',
+        'Welcome In Smart Password',
         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
       ),
       image: Image.network(
@@ -28,14 +28,12 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future<bool> _checkIsUsedLoggedIn() async {
-    await Future.delayed(Duration(seconds: 5));
-    final result = await splashBloc.checkPatter();
-    print('result :  $result');
+    await Future.delayed(Duration(seconds:1));
+    final result = loginBloc.isMasterPasswordSet();
     if (result) {
-      Navigator.pushReplacementNamed(context, DashBoardScreen.routeName);
-      
+      Navigator.pushReplacementNamed(context, CheckPatternScreen.routeName);
     } else {
-      Navigator.pushReplacementNamed(context, LoginScreen.routeName);
+      Navigator.pushReplacementNamed(context, MasterPasswordScreen.routeName);
     }
     return true;
   }
