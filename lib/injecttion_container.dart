@@ -31,11 +31,9 @@ final sl = GetIt.instance;
 
 Future<void> init() async {
   // Hive
-
   await Hive.initFlutter();
   Hive.registerAdapter(PasswordAdapter());
-  await Hive.openBox('keyValueBox');
-  await Hive.openBox<Password>('passwordsBox');
+  await DatabaseUtil.initDbUtil();
 
   sl.registerLazySingleton(() => DatabaseUtil.instance);
 
@@ -115,6 +113,9 @@ _dashBoardInit() {
   sl.registerFactory(
     () => DashboardBloc(
       gettAllPasswords: sl(),
+      addPassword: sl(),
+      deletePassword: sl(),
+      updatePassword: sl(),
     ),
   );
 }

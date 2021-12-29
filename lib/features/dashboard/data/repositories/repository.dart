@@ -10,13 +10,13 @@ class Repository extends RepositoryProtocol {
   Repository({this.dataSource});
 
   @override
-  Either<Failure, bool> addPassword(Password password) {
-    return dataSource.addPassword(password);
+  void addPassword(Password password) {
+    dataSource.addPassword(password);
   }
 
   @override
-  Either<Failure, bool> deletePassword(Password password) {
-    return dataSource.deletePassword(password);
+  void deletePassword(Password password) {
+    dataSource.deletePassword(password);
   }
 
   @override
@@ -25,9 +25,7 @@ class Repository extends RepositoryProtocol {
   }
 
   @override
-  Either<Failure, bool> updatePassword(Password password) {
-    return dataSource.updatePassword(password);
+  void updatePassword(Password password) {
+    dataSource.updatePassword(password);
   }
-
- 
 }

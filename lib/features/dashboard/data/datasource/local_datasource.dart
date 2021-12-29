@@ -10,27 +10,23 @@ class LocalDataSource extends LocalDataSourceProtocol {
   LocalDataSource({this.client});
 
   @override
-  Either<Failure, bool> addPassword(Password password)  {
-    final result =  client.addPassword(password);
+  void addPassword(Password password) {
+    client.addPassword(password);
+  }
+
+  @override
+  void deletePassword(Password password) {
+    client.deletePassword(password);
+  }
+
+  @override
+  Either<Failure, List<Password>> getAllPasswords() {
+    final result = client.getAllPasswords();
     return Right(result);
   }
 
   @override
-  Either<Failure, bool> deletePassword(Password password)  {
-    final result =  client.deletePassword(password);
-    return Right(result);
+  void updatePassword(Password password) {
+    client.updatePassword(password);
   }
-
-  @override
-  Either<Failure, List<Password>> getAllPasswords()  {
-    final result =  client.getAllPasswords();
-    return Right(result);
-  }
-
-  @override
-  Either<Failure, bool> updatePassword(Password password)  {
-    final result =  client.updatePassword(password);
-    return Right(result);
-  }
-
 }

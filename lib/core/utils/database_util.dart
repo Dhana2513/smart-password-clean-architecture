@@ -2,6 +2,13 @@ import 'package:hive/hive.dart';
 import 'package:smart_password_clean_architechture/core/utils/encryption_decryption_util.dart';
 import 'package:smart_password_clean_architechture/features/dashboard/domain/entities/password.dart';
 
+class DatabaseUtilsKeys {
+  static const valueBox = 'keyValueBox';
+  static const passwordsBox = 'passwordsBox';
+  static const keyMasterPassword = 'masterPassword';
+  static const keyPattern = 'pattern';
+}
+
 class DatabaseUtil {
   static final instance = DatabaseUtil._();
   DatabaseUtil._() {
@@ -10,79 +17,107 @@ class DatabaseUtil {
 
   Box _keyValueBox;
   Box<Password> _passwordsBox;
-  EncryptionDecryptionUtil encryptionDecryptionUtil;
+  EncryptionDecryptionUtil _encryptionDecryptionUtil;
+  List<Password> _lstPasswords = [];
+
+  static initDbUtil() async {
+    await Hive.openBox(DatabaseUtilsKeys.valueBox);
+    await Hive.openBox<Password>(DatabaseUtilsKeys.passwordsBox);
+  }
 
   init() async {
-    _keyValueBox = Hive.box('keyValueBox');
-    _passwordsBox = await Hive.openBox<Password>('passwordsBox');
+    _keyValueBox = Hive.box(DatabaseUtilsKeys.valueBox);
+    _passwordsBox =
+        await Hive.openBox<Password>(DatabaseUtilsKeys.passwordsBox);
     initEncryptionDecryptionUtil();
   }
 
   void initEncryptionDecryptionUtil() {
-    String masterPassword = _keyValueBox.get('masterPassword') ?? '';
+    String masterPassword =
+        _keyValueBox.get(DatabaseUtilsKeys.keyMasterPassword) ?? '';
     if (masterPassword.isNotEmpty) {
       String masterKey =
           EncryptionDecryptionUtil.getInstance().decrypt(masterPassword);
 
-      encryptionDecryptionUtil =
+      _encryptionDecryptionUtil =
           EncryptionDecryptionUtil.getInstance(masterKey: masterKey);
     }
   }
 
-  String getPattern() {
-    String pattern = _keyValueBox.get('pattern') ?? '';
-    return pattern.isEmpty ? '' : encryptionDecryptionUtil.decrypt(pattern);
-  }
-
-  String getMasterPassword() {
-    String masterPassword = _keyValueBox.get('masterPassword') ?? '';
-    return masterPassword.isEmpty
-        ? ''
-        : EncryptionDecryptionUtil.getInstance().encrypt(masterPassword);
+  bool isMasterPasswordSet() {
+    String password =
+        _keyValueBox.get(DatabaseUtilsKeys.keyMasterPassword) ?? '';
+    return password.isNotEmpty;
   }
 
   void putMasterPassword(String masterPassword) {
     String master =
         EncryptionDecryptionUtil.getInstance().encrypt(masterPassword);
-    _keyValueBox.put('masterPassword', master);
+    _keyValueBox.put(DatabaseUtilsKeys.keyMasterPassword, master);
     initEncryptionDecryptionUtil();
   }
 
-  void putPattern(String pattern) {
-    _keyValueBox.put('pattern', encryptionDecryptionUtil.encrypt(pattern));
-  }
-
-  void addPassword(Password password) {
-    var addPassword = Password(
-      name: encryptionDecryptionUtil.encrypt(password.name),
-      desc: encryptionDecryptionUtil.encrypt(password.desc),
-      password: encryptionDecryptionUtil.encrypt(password.password),
-    );
-    _passwordsBox.add(addPassword);
+  String getMasterPassword() {
+    String masterPassword =
+        _keyValueBox.get(DatabaseUtilsKeys.keyMasterPassword) ?? '';
+    return masterPassword.isEmpty
+        ? ''
+        : EncryptionDecryptionUtil.getInstance().encrypt(masterPassword);
   }
 
   bool isPatternSet() {
-    String pattern = _keyValueBox.get('pattern') ?? '';
+    String pattern = _keyValueBox.get(DatabaseUtilsKeys.keyPattern) ?? '';
     return pattern.isNotEmpty;
   }
 
-  bool isMasterPasswordSet() {
-    String password = _keyValueBox.get('masterPassword') ?? '';
-    print('isMasterPasswordSet : $password');
-    return password.isNotEmpty;
+  void putPattern(String pattern) {
+    _keyValueBox.put(DatabaseUtilsKeys.keyPattern,
+        _encryptionDecryptionUtil.encrypt(pattern));
+  }
+
+  String getPattern() {
+    String pattern = _keyValueBox.get(DatabaseUtilsKeys.keyPattern) ?? '';
+    return pattern.isEmpty ? '' : _encryptionDecryptionUtil.decrypt(pattern);
+  }
+
+  void addPassword(Password password) {
+    print(' add password ${password.name}');
+    password.desc = _encryptionDecryptionUtil.encrypt(password.desc);
+    password.name = _encryptionDecryptionUtil.encrypt(password.name);
+    password.password = _encryptionDecryptionUtil.encrypt(password.password);
+    _passwordsBox.add(password);
+  }
+
+  void updatePassword(Password password) {
+    print(' update password ${password.dbKey}');
+
+    Password dbPassword =
+        _lstPasswords.singleWhere((element) => element.key == password.dbKey);
+
+    dbPassword.desc = _encryptionDecryptionUtil.encrypt(password.desc);
+    dbPassword.name = _encryptionDecryptionUtil.encrypt(password.name);
+    dbPassword.password = _encryptionDecryptionUtil.encrypt(password.password);
+    dbPassword.save();
+  }
+
+  void deletePassword(Password password) {
+    print('delete call ${password.name}');
+    Password dbPassword =
+        _lstPasswords.singleWhere((element) => element.key == password.dbKey);
+    dbPassword.delete();
   }
 
   List<Password> getAllPasswords() {
-    List<Password> lstPasswords =
-        _passwordsBox.values.toList().cast<Password>();
-
+    _lstPasswords = _passwordsBox.values.toList().cast<Password>();
+    print('getAllPasswords ${_lstPasswords.toString()}');
     List<Password> lstDecryptedPasswords = [];
 
-    lstPasswords.forEach((element) {
+    _lstPasswords.forEach((element) {
       lstDecryptedPasswords.add(Password(
-        name: encryptionDecryptionUtil.decrypt(element.name),
-        desc: encryptionDecryptionUtil.decrypt(element.desc),
-        password: encryptionDecryptionUtil.decrypt(element.password),
+        dbKey: element.key,
+        desc: _encryptionDecryptionUtil.decrypt(element.desc),
+        name: _encryptionDecryptionUtil.decrypt(element.name),
+        password: _encryptionDecryptionUtil.decrypt(element.password),
       ));
     });
 

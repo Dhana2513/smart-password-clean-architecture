@@ -7,7 +7,7 @@ class DashBoardViewModel {
   DashBoardViewModel(this.bloc);
 
   List<Password> lstPasswords = [];
-  getData() async {
-    lstPasswords = await bloc.getAllPasswords();
+  getData()  {
+    lstPasswords =  bloc.getAllPasswords();
   }
 }

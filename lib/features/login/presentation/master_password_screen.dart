@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:smart_password_clean_architechture/features/login/presentation/bloc/login_bloc.dart';
 import 'package:smart_password_clean_architechture/features/login/presentation/set_pattern_screen.dart';
 
 class MasterPasswordScreen extends StatefulWidget {

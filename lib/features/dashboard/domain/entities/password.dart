@@ -6,15 +6,18 @@ part 'password.g.dart';
 @HiveType(typeId: 1)
 class Password extends HiveObject implements EquatableMixin {
   @HiveField(0)
-  final String desc;
+  String desc;
 
   @HiveField(1)
-  final String name;
+  String name;
 
   @HiveField(2)
-  final String password;
+  String password;
+
+  var dbKey;
 
   Password({
+    this.dbKey,
     this.desc,
     this.name,
     this.password,

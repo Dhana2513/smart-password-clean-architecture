@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:pattern_lock/pattern_lock.dart';
 import 'package:smart_password_clean_architechture/features/dashboard/presentation/dashboard_screen.dart';
