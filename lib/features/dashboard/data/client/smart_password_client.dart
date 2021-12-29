@@ -5,7 +5,6 @@ class SmartPasswordClient {
   DatabaseUtil databaseUtil;
 
   SmartPasswordClient({this.databaseUtil});
-  
 
   List<Password> getAllPasswords() {
     return databaseUtil.getAllPasswords();
@@ -14,9 +13,11 @@ class SmartPasswordClient {
   void addPassword(Password password) {
     databaseUtil.addPassword(password);
   }
+
   void updatePassword(Password password) {
     databaseUtil.updatePassword(password);
   }
+
   void deletePassword(Password password) {
     databaseUtil.deletePassword(password);
   }

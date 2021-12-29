@@ -1,6 +1,6 @@
 import 'package:smart_password_clean_architechture/features/dashboard/domain/entities/password.dart';
 
-class PasswordModel extends Password { 
+class PasswordModel extends Password {
   PasswordModel({
     String desc,
     String name,
