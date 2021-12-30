@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:smart_password_clean_architechture/core/dialogs/alert_dialog.dart';
 import 'package:smart_password_clean_architechture/features/dashboard/constants/dashboard_constants.dart';
 import 'package:smart_password_clean_architechture/features/dashboard/domain/entities/password.dart';
 import 'package:smart_password_clean_architechture/features/dashboard/presentation/add_password_screen.dart';
 import 'package:smart_password_clean_architechture/features/dashboard/presentation/bloc/dashboard_bloc.dart';
 import 'package:smart_password_clean_architechture/features/dashboard/presentation/view.models/dashboard_viewmodel.dart';
+import 'package:smart_password_clean_architechture/features/login/presentation/check_master_password_screen.dart';
 
 class DashBoardScreen extends StatefulWidget {
   static const routeName = 'dashboardScreen';
@@ -26,44 +28,121 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(DashBoardConstants.dashBoard.title),
+        actions: _actions(),
       ),
-      body: Container(
-        padding: EdgeInsets.all(16),
-        child: ListView.builder(
+      body: Padding(
+        padding: const EdgeInsets.all(.0),
+        child: ListView.separated(
           itemCount: viewModel.lstPasswords.length,
-          itemBuilder: (context, index) {
-            Password password = viewModel.lstPasswords[index];
-            return ListTile(
-              onTap: () {
-                print('edit password ${password.dbKey}');
-                _callAddPasswordPage(password: password);
-              },
-              trailing: InkWell(
-                onTap: () {
-                  _deletePassword(password);
-                },
-                child: Icon(Icons.delete),
-              ),
-              title: Text(password.desc),
-              subtitle: Padding(
-                padding: EdgeInsets.only(top: 8),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(password.name),
-                    Text(password.password),
-                  ],
-                ),
-              ),
+          itemBuilder: _passwordsListItemBuilder,
+          separatorBuilder: (context, index) {
+            return Container(
+              height: 0.8,
+              color: Colors.grey[300],
             );
           },
         ),
       ),
+      backgroundColor: Colors.grey[100],
       floatingActionButton: FloatingActionButton(
         onPressed: _callAddPasswordPage,
         child: Icon(Icons.add),
       ),
     );
+  }
+
+  Widget _passwordsListItemBuilder(context, index) {
+    Password password = viewModel.lstPasswords[index];
+
+    return Container(
+      color: Colors.white,
+      padding: EdgeInsets.all(8),
+      child: Row(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  password.desc,
+                  style: Theme.of(context).textTheme.headline6,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                child: Text(
+                  password.name,
+                  style: Theme.of(context).textTheme.bodyText1.copyWith(
+                        color: Colors.black54,
+                      ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  password.password,
+                  style: Theme.of(context).textTheme.bodyText1.copyWith(
+                        color: Colors.black54,
+                      ),
+                ),
+              ),
+            ],
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              InkWell(
+                onTap: () {
+                  _callAddPasswordPage(password: password);
+                },
+                child: Icon(
+                  Icons.edit,
+                  color: Colors.black45,
+                ),
+              ),
+              SizedBox(
+                height: 24,
+              ),
+              InkWell(
+                onTap: () {
+                  _deletePassword(password);
+                },
+                child: Icon(
+                  Icons.delete,
+                  color: Colors.black26,
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  List<Widget> _actions() {
+    return [
+      PopupMenuButton<String>(
+        onSelected: handleClick,
+        itemBuilder: (BuildContext context) {
+          return {'Change pattern'}.map((String choice) {
+            return PopupMenuItem<String>(
+              value: choice,
+              child: Text(choice),
+            );
+          }).toList();
+        },
+      ),
+    ];
+  }
+
+  void handleClick(String value) {
+    Navigator.pushReplacementNamed(
+        context, CheckMasterPasswordScreen.routeName);
   }
 
   void _callAddPasswordPage({Password password}) async {
@@ -78,8 +157,20 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
   }
 
   void _deletePassword(Password password) {
-    dashboardBloc.deletePassword(password);
-    viewModel.getData();
-    setState(() {});
+    showAlertDialog(
+      context,
+      title: 'Delete Password!',
+      subtitle: 'Are you sure, you want to delete this password?',
+      cancelButtonText: 'Cancel',
+      cancelCall: () {
+        Navigator.of(context).pop();
+      },
+      continueButtonText: 'Delete',
+      continueCall: () {
+        dashboardBloc.deletePassword(password);
+        viewModel.getData();
+        setState(() {});
+      },
+    );
   }
 }

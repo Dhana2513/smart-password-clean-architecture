@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:smart_password_clean_architechture/features/login/constants/login_constants.dart';
+import 'package:smart_password_clean_architechture/features/login/presentation/bloc/login_bloc.dart';
 import 'package:smart_password_clean_architechture/features/login/presentation/set_pattern_screen.dart';
 
-class MasterPasswordScreen extends StatefulWidget {
-  static const routeName = 'masterPasswordScreen';
-  const MasterPasswordScreen({Key key}) : super(key: key);
+class CheckMasterPasswordScreen extends StatefulWidget {
+  static const routeName = 'checkMasterPasswordScreen';
+  const CheckMasterPasswordScreen({Key key}) : super(key: key);
 
   @override
-  _MasterPasswordScreenState createState() => _MasterPasswordScreenState();
+  _CheckMasterPasswordScreenState createState() =>
+      _CheckMasterPasswordScreenState();
 }
 
-class _MasterPasswordScreenState extends State<MasterPasswordScreen> {
+class _CheckMasterPasswordScreenState extends State<CheckMasterPasswordScreen> {
   TextEditingController _textEditingController = TextEditingController();
 
   @override
@@ -18,7 +20,7 @@ class _MasterPasswordScreenState extends State<MasterPasswordScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          LoginConstants.masterPasswordScreen.title,
+          LoginConstants.checkMasterPasswordScreen.title,
         ),
       ),
       body: Padding(
@@ -36,16 +38,12 @@ class _MasterPasswordScreenState extends State<MasterPasswordScreen> {
               ),
             ),
             SizedBox(height: 40),
-            Text(
-              LoginConstants.masterPasswordScreen.textMasterPasswordInfo,
-              style: TextStyle(fontSize: 15),
-              textAlign: TextAlign.start,
-            ),
             SizedBox(height: 24),
             TextField(
               controller: _textEditingController,
               decoration: InputDecoration(
-                labelText: LoginConstants.masterPasswordScreen.labelTextMasterPassword,
+                labelText:
+                    LoginConstants.masterPasswordScreen.labelTextMasterPassword,
                 border: OutlineInputBorder(),
               ),
             ),
@@ -53,8 +51,9 @@ class _MasterPasswordScreenState extends State<MasterPasswordScreen> {
             Container(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: _setMasterPassword,
-                child: Text(LoginConstants.masterPasswordScreen.btnTextSave),
+                onPressed: _navigateToSetPatternScreen,
+                child: Text(
+                    LoginConstants.checkMasterPasswordScreen.btnTextConfirm),
                 style: ButtonStyle(
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
@@ -66,23 +65,17 @@ class _MasterPasswordScreenState extends State<MasterPasswordScreen> {
               ),
             ),
             Expanded(child: Container()),
-            Text(
-              LoginConstants.masterPasswordScreen.textMasterPasswordNote,
-              style: TextStyle(
-                fontSize: 14,
-                color: Colors.black54,
-              ),
-              textAlign: TextAlign.start,
-            ),
-            SizedBox(height: 50),
           ],
         ),
       ),
     );
   }
 
-  void _setMasterPassword() {
+  void _navigateToSetPatternScreen() {
     String masterPassword = _textEditingController.text.trim();
+    if (!loginBloc.checkMasterPassword(masterPassword)) {
+      return;
+    }
     Navigator.pushReplacementNamed(
       context,
       SetPatternScreen.routeName,

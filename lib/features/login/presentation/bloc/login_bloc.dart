@@ -1,5 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:smart_password_clean_architechture/features/login/domain/usecases/add_pattern.dart';
+import 'package:smart_password_clean_architechture/features/login/domain/usecases/check_master_password.dart';
 import 'package:smart_password_clean_architechture/features/login/domain/usecases/check_pattern.dart';
 import 'package:smart_password_clean_architechture/features/login/domain/usecases/is_master_password_set.dart';
 import 'package:smart_password_clean_architechture/features/login/domain/usecases/is_pattern_set.dart';
@@ -13,6 +14,7 @@ class LoginBloc {
   final CheckPattern _checkPattern;
   final SetMasterPassword _setMasterPassword;
   final UpdatePattern _updatePattern;
+  final CheckMasterPassword _checkMasterPassword;
 
   LoginBloc({
     IsMasterPasswordSet isMasterPasswordSet,
@@ -21,12 +23,14 @@ class LoginBloc {
     CheckPattern checkPattern,
     SetMasterPassword setMasterPassword,
     UpdatePattern updatePattern,
+    CheckMasterPassword checkMasterPassword,
   })  : _isMasterPasswordSet = isMasterPasswordSet,
         _isPatternSet = isPatternSet,
         _addPattern = addPattern,
         _checkPattern = checkPattern,
         _setMasterPassword = setMasterPassword,
-        _updatePattern = updatePattern;
+        _updatePattern = updatePattern,
+        _checkMasterPassword = checkMasterPassword;
 
   bool isMasterPasswordSet() {
     return _isMasterPasswordSet().fold((l) => false, (r) => r);
@@ -50,6 +54,10 @@ class LoginBloc {
 
   void addMasterPassword(String masterPassword) {
     _setMasterPassword(masterPassword);
+  }
+
+   bool checkMasterPassword(String masterPassword) {
+    return _checkMasterPassword(masterPassword).fold((l) => false, (r) => r);
   }
 }
 

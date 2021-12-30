@@ -19,6 +19,7 @@ import 'package:smart_password_clean_architechture/features/login/data/datasourc
 import 'package:smart_password_clean_architechture/features/login/data/repositories/login_repository.dart';
 import 'package:smart_password_clean_architechture/features/login/domain/repositories/login_repository_protocol.dart';
 import 'package:smart_password_clean_architechture/features/login/domain/usecases/add_pattern.dart';
+import 'package:smart_password_clean_architechture/features/login/domain/usecases/check_master_password.dart';
 import 'package:smart_password_clean_architechture/features/login/domain/usecases/check_pattern.dart';
 import 'package:smart_password_clean_architechture/features/login/domain/usecases/is_master_password_set.dart';
 import 'package:smart_password_clean_architechture/features/login/domain/usecases/is_pattern_set.dart';
@@ -65,6 +66,7 @@ _loginInit() {
   ///use cases
   sl.registerLazySingleton(() => IsMasterPasswordSet(sl()));
   sl.registerLazySingleton(() => SetMasterPassword(sl()));
+  sl.registerLazySingleton(() => CheckMasterPassword(sl()));
 
   sl.registerLazySingleton(() => IsPatternSet(sl()));
   sl.registerLazySingleton(() => AddPattern(sl()));
@@ -80,6 +82,7 @@ _loginInit() {
       isPatternSet: sl(),
       setMasterPassword: sl(),
       updatePattern: sl(),
+      checkMasterPassword: sl(),
     ),
   );
 }

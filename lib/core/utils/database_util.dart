@@ -62,7 +62,7 @@ class DatabaseUtil {
         _keyValueBox.get(DatabaseUtilsKeys.keyMasterPassword) ?? '';
     return masterPassword.isEmpty
         ? ''
-        : EncryptionDecryptionUtil.getInstance().encrypt(masterPassword);
+        : EncryptionDecryptionUtil.getInstance().decrypt(masterPassword);
   }
 
   bool isPatternSet() {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smart_password_clean_architechture/features/dashboard/presentation/add_password_screen.dart';
+import 'package:smart_password_clean_architechture/features/login/presentation/check_master_password_screen.dart';
 import 'package:smart_password_clean_architechture/features/login/presentation/check_pattern_screen.dart';
 import 'package:smart_password_clean_architechture/features/dashboard/presentation/dashboard_screen.dart';
 import 'package:smart_password_clean_architechture/features/login/presentation/master_password_screen.dart';
@@ -20,7 +21,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        // primarySwatch: Colors.amber,
+        // primarySwatch: Colors.blueGrey,
+        // primarySwatch: Colors.lightGreen,
+        primarySwatch: Colors.lime,
+        fontFamily: 'Roboto',
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: SplashScreen(),
@@ -30,6 +35,7 @@ class MyApp extends StatelessWidget {
         SetPatternScreen.routeName: (context) => SetPatternScreen(),
         DashBoardScreen.routeName: (context) => DashBoardScreen(),
         AddPasswordScreen.routeName: (context) => AddPasswordScreen(),
+         CheckMasterPasswordScreen.routeName: (context) => CheckMasterPasswordScreen(),
       },
     );
   }
