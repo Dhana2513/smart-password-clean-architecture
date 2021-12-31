@@ -10,7 +10,7 @@ class _SplashScreen {
   _SplashScreen._();
   static final instance = _SplashScreen._();
   final title = 'Smart Password';
-  final textWelcomeToSmartPassword = '';
+  final textWelcomeToSmartPassword = 'Welcome to Smart Password';
 }
 
 class _MasterPasswordScreen {

@@ -141,8 +141,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
   }
 
   void handleClick(String value) {
-    Navigator.pushReplacementNamed(
-        context, CheckMasterPasswordScreen.routeName);
+    Navigator.of(context).pushNamed(CheckMasterPasswordScreen.routeName);
   }
 
   void _callAddPasswordPage({Password password}) async {

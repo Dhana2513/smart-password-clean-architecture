@@ -92,7 +92,6 @@ class _CheckMasterPasswordScreenState extends State<CheckMasterPasswordScreen> {
     Navigator.pushReplacementNamed(
       context,
       SetPatternScreen.routeName,
-      arguments: masterPassword,
     );
   }
 }
