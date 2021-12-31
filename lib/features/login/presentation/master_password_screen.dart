@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smart_password_clean_architechture/core/assets.manager/assets_manager.dart';
 import 'package:smart_password_clean_architechture/core/dialogs/alert_dialog.dart';
 import 'package:smart_password_clean_architechture/features/login/constants/login_constants.dart';
 import 'package:smart_password_clean_architechture/features/login/presentation/set_pattern_screen.dart';
@@ -33,7 +34,7 @@ class _MasterPasswordScreenState extends State<MasterPasswordScreen> {
             SizedBox(height: 50),
             Center(
               child: Image.asset(
-                'assets/icons/ic_launcher.png',
+               AssetsManager.launcherIcon,
                 height: 150,
                 width: 150,
               ),

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:smart_password_clean_architechture/core/assets.manager/assets_manager.dart';
+import 'package:smart_password_clean_architechture/core/dialogs/alert_dialog.dart';
 import 'package:smart_password_clean_architechture/features/login/constants/login_constants.dart';
 import 'package:smart_password_clean_architechture/features/login/presentation/bloc/login_state_handler.dart';
 import 'package:smart_password_clean_architechture/features/login/presentation/set_pattern_screen.dart';
@@ -32,7 +34,7 @@ class _CheckMasterPasswordScreenState extends State<CheckMasterPasswordScreen> {
             SizedBox(height: 100),
             Center(
               child: Image.asset(
-                'assets/icons/ic_launcher.png',
+                AssetsManager.launcherIcon,
                 height: 150,
                 width: 150,
               ),
@@ -75,6 +77,16 @@ class _CheckMasterPasswordScreenState extends State<CheckMasterPasswordScreen> {
   void _navigateToSetPatternScreen() {
     String masterPassword = _textEditingController.text.trim();
     if (!loginBloc.checkMasterPassword(masterPassword)) {
+      showAlertDialog(
+        context,
+        title: 'Info',
+        subtitle:
+            LoginConstants.masterPasswordScreen.errorTextPasswordDoseNotMatch,
+        continueButtonText: 'Ok',
+        continueCall: () {
+          Navigator.of(context).pop();
+        },
+      );
       return;
     }
     Navigator.pushReplacementNamed(

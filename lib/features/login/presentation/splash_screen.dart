@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:smart_password_clean_architechture/core/assets.manager/assets_manager.dart';
+import 'package:smart_password_clean_architechture/features/login/constants/login_constants.dart';
 import 'package:smart_password_clean_architechture/features/login/presentation/bloc/login_state_handler.dart';
 import 'package:smart_password_clean_architechture/features/login/presentation/check_pattern_screen.dart';
 import 'package:smart_password_clean_architechture/features/login/presentation/master_password_screen.dart';
@@ -23,7 +25,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Smart Password'),
+        title: Text(LoginConstants.splashScreen.title),
       ),
       body: Center(
         child: Column(
@@ -32,13 +34,13 @@ class _SplashScreenState extends State<SplashScreen> {
           mainAxisSize: MainAxisSize.min,
           children: [
             Image.asset(
-              'assets/icons/ic_launcher.png',
+             AssetsManager.launcherIcon,
               height: 150,
               width: 150,
             ),
             SizedBox(height: 50),
             Text(
-              'Welcome to Smart password',
+              LoginConstants.splashScreen.textWelcomeToSmartPassword,
               style: TextStyle(fontSize: 26),
             ),
             SizedBox(height: 50),

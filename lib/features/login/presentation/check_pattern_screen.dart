@@ -46,11 +46,11 @@ class CheckPatternScreen extends StatelessWidget {
       Navigator.of(globalKey.currentContext)
           .pushReplacementNamed(DashBoardScreen.routeName);
     } else {
-      showSnackBar(LoginConstants.checkPatternScreen.errorTextWrongPattern);
+      _showSnackBar(LoginConstants.checkPatternScreen.errorTextWrongPattern);
     }
   }
 
-  void showSnackBar(String text) {
+  void _showSnackBar(String text) {
     final snackBar = SnackBar(
       content: Text(text),
       duration: Duration(seconds: 1),

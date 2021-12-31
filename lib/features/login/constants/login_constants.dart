@@ -1,8 +1,16 @@
 class LoginConstants {
+  static final splashScreen = _SplashScreen.instance;
   static final masterPasswordScreen = _MasterPasswordScreen.instance;
   static final checkMasterPasswordScreen = _CheckMasterPasswordScreen.instance;
   static final patternScreen = _PatternScreen.instance;
   static final checkPatternScreen = _CheckPatternScreen.instance;
+}
+
+class _SplashScreen {
+  _SplashScreen._();
+  static final instance = _SplashScreen._();
+  final title = 'Smart Password';
+  final textWelcomeToSmartPassword = '';
 }
 
 class _MasterPasswordScreen {
