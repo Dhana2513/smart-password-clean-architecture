@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:pattern_lock/pattern_lock.dart';
 import 'package:smart_password_clean_architechture/features/login/constants/login_constants.dart';
-import 'package:smart_password_clean_architechture/features/login/presentation/bloc/login_bloc.dart';
+import 'package:smart_password_clean_architechture/features/login/presentation/bloc/login_state_handler.dart';
 import 'package:smart_password_clean_architechture/features/login/presentation/check_pattern_screen.dart';
 
 class SetPatternScreen extends StatefulWidget {
@@ -47,7 +47,7 @@ class _SetPatternScreenState extends State<SetPatternScreen> {
 
   void _onInputComplete(List<int> input) {
     if (input.length < 3) {
-      showSnackBar('At least 3 points required');
+      _showSnackBar(LoginConstants.patternScreen.errorTextPatternLength);
       return;
     }
     if (isConfirm) {
@@ -59,7 +59,7 @@ class _SetPatternScreenState extends State<SetPatternScreen> {
         Navigator.of(context)
             .pushReplacementNamed(CheckPatternScreen.routeName);
       } else {
-        showSnackBar('Patterns do not match');
+        _showSnackBar(LoginConstants.patternScreen.errorTextPatternDoNotMatch);
         setState(() {
           pattern = null;
           isConfirm = false;
@@ -73,7 +73,7 @@ class _SetPatternScreenState extends State<SetPatternScreen> {
     }
   }
 
-  void showSnackBar(String text) {
+  void _showSnackBar(String text) {
     final snackBar = SnackBar(
       content: Text(text),
       duration: Duration(seconds: 1),

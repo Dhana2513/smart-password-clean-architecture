@@ -25,7 +25,7 @@ import 'package:smart_password_clean_architechture/features/login/domain/usecase
 import 'package:smart_password_clean_architechture/features/login/domain/usecases/is_pattern_set.dart';
 import 'package:smart_password_clean_architechture/features/login/domain/usecases/set_master_password.dart';
 import 'package:smart_password_clean_architechture/features/login/domain/usecases/update_pattern.dart';
-import 'package:smart_password_clean_architechture/features/login/presentation/bloc/login_bloc.dart';
+import 'package:smart_password_clean_architechture/features/login/presentation/bloc/login_state_handler.dart';
 
 final sl = GetIt.instance;
 

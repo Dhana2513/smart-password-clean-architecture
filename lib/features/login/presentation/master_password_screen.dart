@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smart_password_clean_architechture/core/dialogs/alert_dialog.dart';
 import 'package:smart_password_clean_architechture/features/login/constants/login_constants.dart';
 import 'package:smart_password_clean_architechture/features/login/presentation/set_pattern_screen.dart';
 
@@ -11,7 +12,9 @@ class MasterPasswordScreen extends StatefulWidget {
 }
 
 class _MasterPasswordScreenState extends State<MasterPasswordScreen> {
-  TextEditingController _textEditingController = TextEditingController();
+  TextEditingController _masterPasswordController = TextEditingController();
+  TextEditingController _confirmMasterPasswordController =
+      TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +30,7 @@ class _MasterPasswordScreenState extends State<MasterPasswordScreen> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 100),
+            SizedBox(height: 50),
             Center(
               child: Image.asset(
                 'assets/icons/ic_launcher.png',
@@ -43,11 +46,23 @@ class _MasterPasswordScreenState extends State<MasterPasswordScreen> {
             ),
             SizedBox(height: 24),
             TextField(
-              controller: _textEditingController,
+              controller: _masterPasswordController,
               decoration: InputDecoration(
-                labelText: LoginConstants.masterPasswordScreen.labelTextMasterPassword,
+                labelText:
+                    LoginConstants.masterPasswordScreen.labelTextMasterPassword,
                 border: OutlineInputBorder(),
               ),
+              obscureText: true,
+            ),
+            SizedBox(height: 24),
+            TextField(
+              controller: _confirmMasterPasswordController,
+              decoration: InputDecoration(
+                labelText:
+                    LoginConstants.masterPasswordScreen.lableTextConfirmMasterPassword,
+                border: OutlineInputBorder(),
+              ),
+              obscureText: true,
             ),
             SizedBox(height: 24),
             Container(
@@ -82,11 +97,43 @@ class _MasterPasswordScreenState extends State<MasterPasswordScreen> {
   }
 
   void _setMasterPassword() {
-    String masterPassword = _textEditingController.text.trim();
+    String masterPassword = _masterPasswordController.text.trim();
+    if (!_validatePassword(masterPassword)) {
+      return;
+    }
     Navigator.pushReplacementNamed(
       context,
       SetPatternScreen.routeName,
       arguments: masterPassword,
+    );
+  }
+
+  bool _validatePassword(String password) {
+    if (_confirmMasterPasswordController.text.trim() != password) {
+      _showAlert(
+          LoginConstants.masterPasswordScreen.errorTextPasswordDoseNotMatch);
+      return false;
+    }
+    if (password.isEmpty) {
+      _showAlert(LoginConstants.masterPasswordScreen.errorTextBlankPassword);
+      return false;
+    }
+    if (password.length < 8 || password.length > 16) {
+      _showAlert(LoginConstants.masterPasswordScreen.errorTextPasswordLength);
+      return false;
+    }
+    return true;
+  }
+
+  void _showAlert(String massage) {
+    showAlertDialog(
+      context,
+      title: 'Info',
+      subtitle: massage,
+      continueButtonText: 'Ok',
+      continueCall: () {
+        Navigator.of(context).pop();
+      },
     );
   }
 }

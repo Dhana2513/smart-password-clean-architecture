@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pattern_lock/pattern_lock.dart';
 import 'package:smart_password_clean_architechture/features/dashboard/presentation/dashboard_screen.dart';
 import 'package:smart_password_clean_architechture/features/login/constants/login_constants.dart';
-import 'package:smart_password_clean_architechture/features/login/presentation/bloc/login_bloc.dart';
+import 'package:smart_password_clean_architechture/features/login/presentation/bloc/login_state_handler.dart';
 
 class CheckPatternScreen extends StatelessWidget {
   static const routeName = 'checkPattern';
@@ -46,7 +46,7 @@ class CheckPatternScreen extends StatelessWidget {
       Navigator.of(globalKey.currentContext)
           .pushReplacementNamed(DashBoardScreen.routeName);
     } else {
-      showSnackBar('Wrong pattern');
+      showSnackBar(LoginConstants.checkPatternScreen.errorTextWrongPattern);
     }
   }
 

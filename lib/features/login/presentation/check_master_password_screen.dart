@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smart_password_clean_architechture/features/login/constants/login_constants.dart';
-import 'package:smart_password_clean_architechture/features/login/presentation/bloc/login_bloc.dart';
+import 'package:smart_password_clean_architechture/features/login/presentation/bloc/login_state_handler.dart';
 import 'package:smart_password_clean_architechture/features/login/presentation/set_pattern_screen.dart';
 
 class CheckMasterPasswordScreen extends StatefulWidget {
@@ -46,6 +46,7 @@ class _CheckMasterPasswordScreenState extends State<CheckMasterPasswordScreen> {
                     LoginConstants.masterPasswordScreen.labelTextMasterPassword,
                 border: OutlineInputBorder(),
               ),
+              obscureText: true,
             ),
             SizedBox(height: 24),
             Container(

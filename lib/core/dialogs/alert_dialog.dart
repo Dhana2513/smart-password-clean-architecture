@@ -5,9 +5,9 @@ showAlertDialog(
   @required String title,
   @required String subtitle,
   @required String continueButtonText,
-  @required String cancelButtonText,
-  @required VoidCallback cancelCall,
   @required VoidCallback continueCall,
+  String cancelButtonText,
+  VoidCallback cancelCall,
 }) {
   showDialog(
     context: context,
@@ -16,10 +16,12 @@ showAlertDialog(
         title: Text(title),
         content: Text(subtitle),
         actions: [
-          TextButton(
-            child: Text(cancelButtonText),
-            onPressed: cancelCall,
-          ),
+          cancelButtonText == null
+              ? SizedBox.shrink()
+              : TextButton(
+                  child: Text(cancelButtonText),
+                  onPressed: cancelCall,
+                ),
           TextButton(
             child: Text(continueButtonText),
             onPressed: continueCall,
