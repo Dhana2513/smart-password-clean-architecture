@@ -56,7 +56,13 @@ class _CheckMasterPasswordScreenState extends State<CheckMasterPasswordScreen> {
               child: ElevatedButton(
                 onPressed: _navigateToSetPatternScreen,
                 child: Text(
-                    LoginConstants.checkMasterPasswordScreen.btnTextConfirm),
+                  LoginConstants.checkMasterPasswordScreen.btnTextConfirm,
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
                 style: ButtonStyle(
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(

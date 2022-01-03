@@ -23,7 +23,7 @@ class _MasterPasswordScreen {
   final textMasterPasswordNote =
       'Note: Once master password set it can not be changed. \nIf you lose your master password then you will lose all your data';
   final labelTextMasterPassword = 'Master Password';
-  final lableTextConfirmMasterPassword = 'Confirm Master Passowrd';
+  final labelTextConfirmMasterPassword = 'Confirm Master Passowrd';
   final errorTextBlankPassword = 'Master password cannot be left blank';
   final errorTextPasswordLength =
       'Master password length should be between 8 - 16 characters';

@@ -28,7 +28,7 @@ class CheckPatternScreen extends StatelessWidget {
           ),
           Flexible(
             child: PatternLock(
-              selectedColor: Colors.red,
+              selectedColor: Colors.cyan,
               pointRadius: 8,
               showInput: true,
               dimension: 3,

@@ -7,7 +7,7 @@ import 'package:smart_password_clean_architecture/features/login/presentation/ma
 import 'package:smart_password_clean_architecture/features/login/presentation/set_pattern_screen.dart';
 import 'package:smart_password_clean_architecture/features/login/presentation/splash_screen.dart';
 
-import 'injecttion_container.dart' as di;
+import 'injection_container.dart' as di;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,10 +21,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        // primarySwatch: Colors.amber,
-        // primarySwatch: Colors.blueGrey,
-        // primarySwatch: Colors.lightGreen,
-        primarySwatch: Colors.lime,
+        primarySwatch: Colors.cyan,
         fontFamily: 'Roboto',
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),

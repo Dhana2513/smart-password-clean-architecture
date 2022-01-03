@@ -11,6 +11,7 @@ class DatabaseUtilsKeys {
 
 class DatabaseUtil {
   static final instance = DatabaseUtil._();
+
   DatabaseUtil._() {
     init();
   }
@@ -81,7 +82,6 @@ class DatabaseUtil {
   }
 
   void addPassword(Password password) {
-    print(' add password ${password.name}');
     password.desc = _encryptionDecryptionUtil.encrypt(password.desc);
     password.name = _encryptionDecryptionUtil.encrypt(password.name);
     password.password = _encryptionDecryptionUtil.encrypt(password.password);
@@ -89,8 +89,6 @@ class DatabaseUtil {
   }
 
   void updatePassword(Password password) {
-    print(' update password ${password.dbKey}');
-
     Password dbPassword =
         _lstPasswords.singleWhere((element) => element.key == password.dbKey);
 
@@ -101,7 +99,6 @@ class DatabaseUtil {
   }
 
   void deletePassword(Password password) {
-    print('delete call ${password.name}');
     Password dbPassword =
         _lstPasswords.singleWhere((element) => element.key == password.dbKey);
     dbPassword.delete();
@@ -109,7 +106,6 @@ class DatabaseUtil {
 
   List<Password> getAllPasswords() {
     _lstPasswords = _passwordsBox.values.toList().cast<Password>();
-    print('getAllPasswords ${_lstPasswords.toString()}');
     List<Password> lstDecryptedPasswords = [];
 
     _lstPasswords.forEach((element) {

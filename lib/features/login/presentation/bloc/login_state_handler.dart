@@ -1,11 +1,11 @@
 import 'package:get_it/get_it.dart';
-import 'package:smart_password_clean_architecture/features/login/domain/usecases/add_pattern.dart';
-import 'package:smart_password_clean_architecture/features/login/domain/usecases/check_master_password.dart';
-import 'package:smart_password_clean_architecture/features/login/domain/usecases/check_pattern.dart';
-import 'package:smart_password_clean_architecture/features/login/domain/usecases/is_master_password_set.dart';
-import 'package:smart_password_clean_architecture/features/login/domain/usecases/is_pattern_set.dart';
-import 'package:smart_password_clean_architecture/features/login/domain/usecases/set_master_password.dart';
-import 'package:smart_password_clean_architecture/features/login/domain/usecases/update_pattern.dart';
+import 'package:smart_password_clean_architecture/features/login/domain/use_cases/add_pattern.dart';
+import 'package:smart_password_clean_architecture/features/login/domain/use_cases/check_master_password.dart';
+import 'package:smart_password_clean_architecture/features/login/domain/use_cases/check_pattern.dart';
+import 'package:smart_password_clean_architecture/features/login/domain/use_cases/is_master_password_set.dart';
+import 'package:smart_password_clean_architecture/features/login/domain/use_cases/is_pattern_set.dart';
+import 'package:smart_password_clean_architecture/features/login/domain/use_cases/set_master_password.dart';
+import 'package:smart_password_clean_architecture/features/login/domain/use_cases/update_pattern.dart';
 
 class LoginBloc {
   final IsMasterPasswordSet _isMasterPasswordSet;

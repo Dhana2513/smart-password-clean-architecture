@@ -58,7 +58,7 @@ class _MasterPasswordScreenState extends State<MasterPasswordScreen> {
               controller: _confirmMasterPasswordController,
               decoration: InputDecoration(
                 labelText: LoginConstants
-                    .masterPasswordScreen.lableTextConfirmMasterPassword,
+                    .masterPasswordScreen.labelTextConfirmMasterPassword,
                 border: OutlineInputBorder(),
               ),
               obscureText: true,
@@ -68,7 +68,14 @@ class _MasterPasswordScreenState extends State<MasterPasswordScreen> {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: _setMasterPassword,
-                child: Text(LoginConstants.masterPasswordScreen.btnTextSave),
+                child: Text(
+                  LoginConstants.masterPasswordScreen.btnTextSave,
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
                 style: ButtonStyle(
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
@@ -79,7 +86,7 @@ class _MasterPasswordScreenState extends State<MasterPasswordScreen> {
                 ),
               ),
             ),
-            Expanded(child: Container()),
+            SizedBox(height: 50),
             Text(
               LoginConstants.masterPasswordScreen.textMasterPasswordNote,
               style: TextStyle(

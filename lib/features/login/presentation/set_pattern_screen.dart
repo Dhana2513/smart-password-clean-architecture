@@ -35,7 +35,7 @@ class _SetPatternScreenState extends State<SetPatternScreen> {
           ),
           Flexible(
             child: PatternLock(
-              selectedColor: Colors.amber,
+              selectedColor: Colors.cyan,
               pointRadius: 12,
               onInputComplete: _onInputComplete,
             ),
