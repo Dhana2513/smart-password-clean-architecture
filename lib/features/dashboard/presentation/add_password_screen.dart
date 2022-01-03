@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:smart_password_clean_architechture/features/dashboard/constants/dashboard_constants.dart';
-import 'package:smart_password_clean_architechture/features/dashboard/domain/entities/password.dart';
-import 'package:smart_password_clean_architechture/features/dashboard/presentation/bloc/dashboard_bloc.dart';
+import 'package:smart_password_clean_architecture/features/dashboard/constants/dashboard_constants.dart';
+import 'package:smart_password_clean_architecture/features/dashboard/domain/entities/password.dart';
+import 'package:smart_password_clean_architecture/features/dashboard/presentation/bloc/dashboard_bloc.dart';
 
 class AddPasswordScreen extends StatefulWidget {
   static const routeName = 'addPassword';

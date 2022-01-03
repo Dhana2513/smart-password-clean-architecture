@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
-import 'package:smart_password_clean_architechture/core/error/failures.dart';
-import 'package:smart_password_clean_architechture/features/login/data/client/login_client.dart';
-import 'package:smart_password_clean_architechture/features/login/data/datasource/login_local_datasource_protocol.dart';
+import 'package:smart_password_clean_architecture/core/error/failures.dart';
+import 'package:smart_password_clean_architecture/features/login/data/client/login_client.dart';
+import 'package:smart_password_clean_architecture/features/login/data/datasource/login_local_datasource_protocol.dart';
 
 class LoginLocalDataSource extends LoginLocalDataSourceProtocol {
   final LoginClient client;
@@ -40,6 +40,6 @@ class LoginLocalDataSource extends LoginLocalDataSourceProtocol {
 
   @override
   Either<Failure, bool> isMasterPasswordSet() {
-      return Right(client.isMasterPasswordSet());
+    return Right(client.isMasterPasswordSet());
   }
 }

@@ -53,4 +53,5 @@ class _CheckPatternScreen {
   final title = 'Check Pattern';
   final textDrawYourPattern = 'Draw Your pattern';
   final errorTextWrongPattern = 'Wrong pattern';
+  final actionTextUnlockWithMasterPassword = 'Unlock With Master Password';
 }

@@ -1,4 +1,4 @@
-# smart_password_clean_architechture
+# smart_password_clean_architecture
 
 A new Flutter project.
 

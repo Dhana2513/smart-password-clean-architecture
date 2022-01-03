@@ -1,10 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:pattern_lock/pattern_lock.dart';
-import 'package:smart_password_clean_architechture/features/dashboard/presentation/dashboard_screen.dart';
-import 'package:smart_password_clean_architechture/features/login/constants/login_constants.dart';
-import 'package:smart_password_clean_architechture/features/login/presentation/bloc/login_state_handler.dart';
-import 'package:smart_password_clean_architechture/features/login/presentation/check_pattern_screen.dart';
+import 'package:smart_password_clean_architecture/features/login/constants/login_constants.dart';
+import 'package:smart_password_clean_architecture/features/login/presentation/bloc/login_state_handler.dart';
+import 'package:smart_password_clean_architecture/features/login/presentation/check_pattern_screen.dart';
 
 class SetPatternScreen extends StatefulWidget {
   static const routeName = 'setPattern';
@@ -56,14 +55,12 @@ class _SetPatternScreenState extends State<SetPatternScreen> {
         String masterPassword =
             ModalRoute.of(context).settings.arguments as String;
         if (masterPassword != null) {
-          //Adding master password and pattern first time
           loginBloc.addMasterPassword(masterPassword);
         } else {
-          //Update pattern call
-          Navigator.of(context)
-              .popUntil(ModalRoute.withName(DashBoardScreen.routeName));
+          Navigator.of(context).pop();
         }
         loginBloc.addPattern(pattern.toString());
+
         Navigator.of(context)
             .pushReplacementNamed(CheckPatternScreen.routeName);
       } else {

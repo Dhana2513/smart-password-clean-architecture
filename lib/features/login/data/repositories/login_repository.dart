@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
-import 'package:smart_password_clean_architechture/core/error/failures.dart';
-import 'package:smart_password_clean_architechture/features/login/data/datasource/login_local_datasource_protocol.dart';
-import 'package:smart_password_clean_architechture/features/login/domain/repositories/login_repository_protocol.dart';
+import 'package:smart_password_clean_architecture/core/error/failures.dart';
+import 'package:smart_password_clean_architecture/features/login/data/datasource/login_local_datasource_protocol.dart';
+import 'package:smart_password_clean_architecture/features/login/domain/repositories/login_repository_protocol.dart';
 
 class LoginRepository extends LoginRepositoryProtocol {
   final LoginLocalDataSourceProtocol dataSource;

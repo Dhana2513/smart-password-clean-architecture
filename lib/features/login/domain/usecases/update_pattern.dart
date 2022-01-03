@@ -1,4 +1,4 @@
-import 'package:smart_password_clean_architechture/features/login/domain/repositories/login_repository_protocol.dart';
+import 'package:smart_password_clean_architecture/features/login/domain/repositories/login_repository_protocol.dart';
 
 class UpdatePattern {
   final LoginRepositoryProtocol repository;

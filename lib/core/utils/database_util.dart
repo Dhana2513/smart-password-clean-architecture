@@ -1,6 +1,6 @@
 import 'package:hive/hive.dart';
-import 'package:smart_password_clean_architechture/core/utils/encryption_decryption_util.dart';
-import 'package:smart_password_clean_architechture/features/dashboard/domain/entities/password.dart';
+import 'package:smart_password_clean_architecture/core/utils/encryption_decryption_util.dart';
+import 'package:smart_password_clean_architecture/features/dashboard/domain/entities/password.dart';
 
 class DatabaseUtilsKeys {
   static const valueBox = 'keyValueBox';

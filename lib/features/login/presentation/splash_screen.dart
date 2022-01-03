@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:smart_password_clean_architechture/core/assets.manager/assets_manager.dart';
-import 'package:smart_password_clean_architechture/features/login/constants/login_constants.dart';
-import 'package:smart_password_clean_architechture/features/login/presentation/bloc/login_state_handler.dart';
-import 'package:smart_password_clean_architechture/features/login/presentation/check_pattern_screen.dart';
-import 'package:smart_password_clean_architechture/features/login/presentation/master_password_screen.dart';
+import 'package:smart_password_clean_architecture/core/assets.manager/assets_manager.dart';
+import 'package:smart_password_clean_architecture/features/login/constants/login_constants.dart';
+import 'package:smart_password_clean_architecture/features/login/presentation/bloc/login_state_handler.dart';
+import 'package:smart_password_clean_architecture/features/login/presentation/check_pattern_screen.dart';
+import 'package:smart_password_clean_architecture/features/login/presentation/master_password_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key key}) : super(key: key);
@@ -34,7 +34,7 @@ class _SplashScreenState extends State<SplashScreen> {
           mainAxisSize: MainAxisSize.min,
           children: [
             Image.asset(
-             AssetsManager.launcherIcon,
+              AssetsManager.launcherIcon,
               height: 150,
               width: 150,
             ),

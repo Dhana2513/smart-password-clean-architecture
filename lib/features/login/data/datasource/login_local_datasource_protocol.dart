@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:smart_password_clean_architechture/core/error/failures.dart';
+import 'package:smart_password_clean_architecture/core/error/failures.dart';
 
 abstract class LoginLocalDataSourceProtocol {
   Either<Failure, bool> isPatternSet();

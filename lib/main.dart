@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:smart_password_clean_architechture/features/dashboard/presentation/add_password_screen.dart';
-import 'package:smart_password_clean_architechture/features/login/presentation/check_master_password_screen.dart';
-import 'package:smart_password_clean_architechture/features/login/presentation/check_pattern_screen.dart';
-import 'package:smart_password_clean_architechture/features/dashboard/presentation/dashboard_screen.dart';
-import 'package:smart_password_clean_architechture/features/login/presentation/master_password_screen.dart';
-import 'package:smart_password_clean_architechture/features/login/presentation/set_pattern_screen.dart';
-import 'package:smart_password_clean_architechture/features/login/presentation/splash_screen.dart';
+import 'package:smart_password_clean_architecture/features/dashboard/presentation/add_password_screen.dart';
+import 'package:smart_password_clean_architecture/features/dashboard/presentation/dashboard_screen.dart';
+import 'package:smart_password_clean_architecture/features/login/presentation/check_master_password_screen.dart';
+import 'package:smart_password_clean_architecture/features/login/presentation/check_pattern_screen.dart';
+import 'package:smart_password_clean_architecture/features/login/presentation/master_password_screen.dart';
+import 'package:smart_password_clean_architecture/features/login/presentation/set_pattern_screen.dart';
+import 'package:smart_password_clean_architecture/features/login/presentation/splash_screen.dart';
 
 import 'injecttion_container.dart' as di;
 
@@ -35,7 +35,8 @@ class MyApp extends StatelessWidget {
         SetPatternScreen.routeName: (context) => SetPatternScreen(),
         DashBoardScreen.routeName: (context) => DashBoardScreen(),
         AddPasswordScreen.routeName: (context) => AddPasswordScreen(),
-         CheckMasterPasswordScreen.routeName: (context) => CheckMasterPasswordScreen(),
+        CheckMasterPasswordScreen.routeName: (context) =>
+            CheckMasterPasswordScreen(),
       },
     );
   }

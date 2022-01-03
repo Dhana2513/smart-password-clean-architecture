@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:smart_password_clean_architechture/core/assets.manager/assets_manager.dart';
-import 'package:smart_password_clean_architechture/core/dialogs/alert_dialog.dart';
-import 'package:smart_password_clean_architechture/features/login/constants/login_constants.dart';
-import 'package:smart_password_clean_architechture/features/login/presentation/bloc/login_state_handler.dart';
-import 'package:smart_password_clean_architechture/features/login/presentation/set_pattern_screen.dart';
+import 'package:smart_password_clean_architecture/core/assets.manager/assets_manager.dart';
+import 'package:smart_password_clean_architecture/core/dialogs/alert_dialog.dart';
+import 'package:smart_password_clean_architecture/features/login/constants/login_constants.dart';
+import 'package:smart_password_clean_architecture/features/login/presentation/bloc/login_state_handler.dart';
+import 'package:smart_password_clean_architecture/features/login/presentation/set_pattern_screen.dart';
 
 class CheckMasterPasswordScreen extends StatefulWidget {
   static const routeName = 'checkMasterPasswordScreen';

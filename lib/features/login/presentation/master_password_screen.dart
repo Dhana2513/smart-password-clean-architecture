@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:smart_password_clean_architechture/core/assets.manager/assets_manager.dart';
-import 'package:smart_password_clean_architechture/core/dialogs/alert_dialog.dart';
-import 'package:smart_password_clean_architechture/features/login/constants/login_constants.dart';
-import 'package:smart_password_clean_architechture/features/login/presentation/set_pattern_screen.dart';
+import 'package:smart_password_clean_architecture/core/assets.manager/assets_manager.dart';
+import 'package:smart_password_clean_architecture/core/dialogs/alert_dialog.dart';
+import 'package:smart_password_clean_architecture/features/login/constants/login_constants.dart';
+import 'package:smart_password_clean_architecture/features/login/presentation/set_pattern_screen.dart';
 
 class MasterPasswordScreen extends StatefulWidget {
   static const routeName = 'masterPasswordScreen';
@@ -27,14 +27,12 @@ class _MasterPasswordScreenState extends State<MasterPasswordScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: ListView(
           children: [
             SizedBox(height: 50),
             Center(
               child: Image.asset(
-               AssetsManager.launcherIcon,
+                AssetsManager.launcherIcon,
                 height: 150,
                 width: 150,
               ),
@@ -59,8 +57,8 @@ class _MasterPasswordScreenState extends State<MasterPasswordScreen> {
             TextField(
               controller: _confirmMasterPasswordController,
               decoration: InputDecoration(
-                labelText:
-                    LoginConstants.masterPasswordScreen.lableTextConfirmMasterPassword,
+                labelText: LoginConstants
+                    .masterPasswordScreen.lableTextConfirmMasterPassword,
                 border: OutlineInputBorder(),
               ),
               obscureText: true,

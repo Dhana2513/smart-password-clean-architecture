@@ -1,4 +1,4 @@
-import 'package:smart_password_clean_architechture/core/utils/database_util.dart';
+import 'package:smart_password_clean_architecture/core/utils/database_util.dart';
 
 class LoginClient {
   final DatabaseUtil _databaseUtil;
