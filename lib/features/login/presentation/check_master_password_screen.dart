@@ -48,6 +48,7 @@ class _CheckMasterPasswordScreenState extends State<CheckMasterPasswordScreen> {
                     LoginConstants.masterPasswordScreen.labelTextMasterPassword,
                 border: OutlineInputBorder(),
               ),
+              keyboardType: TextInputType.visiblePassword,
               obscureText: true,
             ),
             SizedBox(height: 24),

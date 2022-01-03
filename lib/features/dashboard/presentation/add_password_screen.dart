@@ -99,6 +99,7 @@ class _AddPasswordScreenState extends State<AddPasswordScreen> {
                     labelText: DashBoardConstants.addPassword.hintTextTitle,
                     border: OutlineInputBorder(),
                   ),
+                  keyboardType: TextInputType.name,
                 ),
               ),
               Padding(
@@ -110,6 +111,7 @@ class _AddPasswordScreenState extends State<AddPasswordScreen> {
                     labelText: DashBoardConstants.addPassword.hintTextUsername,
                     border: OutlineInputBorder(),
                   ),
+                  keyboardType: TextInputType.visiblePassword,
                 ),
               ),
               Padding(
@@ -121,6 +123,7 @@ class _AddPasswordScreenState extends State<AddPasswordScreen> {
                     labelText: DashBoardConstants.addPassword.hintPassword,
                     border: OutlineInputBorder(),
                   ),
+                  keyboardType: TextInputType.visiblePassword,
                 ),
               ),
               SizedBox(height: 24),
