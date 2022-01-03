@@ -1,4 +1,4 @@
-package com.example.smart_password_clean_architechture
+package com.example.smart_password_clean_architecture
 
 import io.flutter.embedding.android.FlutterActivity
 
